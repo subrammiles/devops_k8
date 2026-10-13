@@ -1,12 +1,13 @@
-minikube start
+# D. Package the app with Helm
 
+The chart renders a Deployment and a ClusterIP Service. Build and load `node-app:1.0` first as described in the [root README](../README.md#build-the-app-image).
 
-# delete old
-kubectl delete service node-app
-kubectl delete deployment node-app
+Run from this directory:
 
-# install now
+```sh
 helm install node-app .
+helm status node-app
+kubectl port-forward service/node-app 3001:80
+```
 
-helm upgrade node-app .
-helm template node-app .
+Open `http://localhost:3001`. Override chart values, for example, `helm upgrade node-app . --set replicaCount=3`. Remove the release with `helm uninstall node-app`.

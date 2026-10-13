@@ -1,19 +1,17 @@
-# Previous step
-Port forward:
-kubectl port-forward pod/node-app-pod 3001:3000
+# B. Keep replicas running with a Deployment
 
-You already created a pod and exposed the port
+A Deployment creates and replaces Pods to maintain the requested replica count.
 
-#
-Use Deployment (Like ECS Service)
+```sh
+kubectl apply -f b-simple-deployment/deployment.yaml
+kubectl get deployment,pods
+kubectl scale deployment/node-app --replicas=3
+```
 
-Pods alone are not practical. Use Deployment.
+The manifest starts two replicas. To reach them locally, forward the Deployment's port:
 
-Create deployment.yaml
+```sh
+kubectl port-forward deployment/node-app 3001:3000
+```
 
-kubectl apply -f deployment.yaml
-
-Check:
-kubectl get pods
-
-👉 You’ll see 2 pods running
+Open `http://localhost:3001`. Clean up with `kubectl delete -f b-simple-deployment/deployment.yaml`.

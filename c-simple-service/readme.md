@@ -1,14 +1,12 @@
-Expose Using Service
+# C. Give Pods a stable address with a Service
 
-Pods are dynamic → need stable access.
+This folder applies a two-replica Deployment and a NodePort Service. The Service selects Pods using the `app: node-app` label.
 
-Create service.yaml
+```sh
+kubectl apply -f c-simple-service/deployment.yaml
+kubectl apply -f c-simple-service/service.yaml
+kubectl get deployment,pods,service
+minikube service node-app
+```
 
-Apply:
-kubectl apply -f service.yaml
-Access app:
-minikube service node-app-service
-
-OR manually:
-
-http://<node-ip>:30007
+The NodePort is `30007`; `minikube service` opens the reachable URL for your cluster. For other clusters, use the cluster's node address and port `30007` if NodePort access is enabled. Clean up both resources with `kubectl delete -f c-simple-service/`.

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-configured
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-app-configured
+  template:
+    metadata:
+      labels:
+        app: node-app-configured
+    spec:
+      containers:
+        - name: node-app
+          image: node-app:1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: node-app-config

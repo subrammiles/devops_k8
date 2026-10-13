@@ -1,23 +1,20 @@
-| ECS / Fargate   | Kubernetes           | What it means                            |
-| --------------- | -------------------- | ---------------------------------------- |
-| Task            | Pod                  | Smallest deployable unit (1+ containers) |
-| Container       | Container            | Same concept                             |
-| Task Definition | Pod Spec             | Blueprint of how to run containers       |
-| Service         | Deployment / Service | Keeps app running + exposes it           |
+# ECS and Kubernetes concepts
 
+This is a simplified comparison for the Node.js examples in this repository. The resources are not exact one-to-one equivalents.
 
-ECS Service vs Kubernetes Deployment
-ECS Service:
-Keeps tasks running
-Handles scaling
-Load balancing
-Kubernetes equivalent:
-Feature	Kubernetes Resource
-Keep pods running	Deployment
-Scaling	Deployment
-Networking	Service
+| Amazon ECS | Kubernetes | Rough relationship |
+| --- | --- | --- |
+| Task | Pod | A running unit containing one or more containers |
+| Task definition | Container definition in a Pod template | Describes how containers should run |
+| ECS service | Deployment plus Service | A Deployment maintains replicas; a Service provides stable network access |
+| Container image | Container image | The packaged application and runtime |
 
-👉 In K8s, one ECS Service = 2 resources
+## Main difference
 
-Deployment (manages pods)
-Service (exposes them)
+An ECS service commonly manages tasks and may integrate with load balancing. In Kubernetes, these responsibilities are split across resources:
+
+- A **Deployment** creates and replaces Pods and can scale their replica count.
+- A **Service** selects matching Pods and gives them a stable network address.
+- An **Ingress** can route HTTP traffic from outside the cluster to a Service, when an Ingress controller is installed.
+
+The examples in this repository show the progression from a [Pod](a-simplepod/) to a [Deployment](b-simple-deployment/), then a [Service](c-simple-service/).

@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: node-app
-    image: node-k8s-app
-    imagePullPolicy: Never 
+    image: node-app:1.0
+    imagePullPolicy: IfNotPresent
     ports:
-    - containerPort: 3001
+    - containerPort: 3000
