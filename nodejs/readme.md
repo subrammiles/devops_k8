@@ -1,6 +1,11 @@
 # Build from the repository root
-docker build -t node-app:1.0 -f nodejs/dockerfile nodejs
+docker build -t my-node-app:1.0 -f nodejs/dockerfile nodejs
 
+docker image ls
+if you wan to remove 
+docker rmi my-node-app:1.0
 
 # Run locally
-docker run --rm -p 3000:3000 node-app:1.0
+docker run --rm -p 3000:3000 my-node-app:1.0
+ to stop 
+ docker stop <container_id>
