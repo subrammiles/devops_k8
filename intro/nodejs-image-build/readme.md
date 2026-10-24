@@ -1,5 +1,5 @@
 # Build from the repository root
-docker build -t my-node-app:1.0 -f nodejs/dockerfile nodejs
+docker build -t my-node-app:1.0 -f nodejs-image-build/dockerfile nodejs
 
 docker image ls
 if you wan to remove 

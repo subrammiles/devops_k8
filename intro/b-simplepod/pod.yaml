@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: node-app-pod
+  name: my-node-app-pod
 spec:
   containers:
-  - name: node-app
-    image: node-app:1.0
+  - name: my-node-app
+    image: my-node-app:1.0
     imagePullPolicy: IfNotPresent
     ports:
     - containerPort: 3000
